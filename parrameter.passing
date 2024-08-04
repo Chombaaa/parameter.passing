@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+// Function to demonstrate passing an integer by value
+void modifyValueByValue(int value) {
+    value += 10;
+    printf("Value inside modifyValueByValue(): %d\n", value);
+}
+
+// Function to demonstrate passing an integer by reference using a pointer
+void modifyValueByReference(int *value) {
+    *value += 10;
+    printf("Value inside modifyValueByReference(): %d\n", *value);
+}
+
+// Function to demonstrate passing an array by reference
+void modifyArrayElements(int arr[], size_t size) {
+    for (size_t i = 0; i < size; i++) {
+        arr[i] *= 2;
+    }
+    printf("Array inside modifyArrayElements(): ");
+    for (size_t i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    // Demonstrating passing an integer by value
+    int num = 5;
+    printf("Original value: %d\n", num);
+    modifyValueByValue(num);
+    printf("Value after modifyValueByValue(): %d\n\n", num);
+
+    // Demonstrating passing an integer by reference using a pointer
+    printf("Original value: %d\n", num);
+    modifyValueByReference(&num);
+    printf("Value after modifyValueByReference(): %d\n\n", num);
+
+    // Demonstrating passing an array by reference
+    int arr[] = {1, 2, 3, 4, 5};
+    size_t arraySize = sizeof(arr) / sizeof(arr[0]);
+    printf("Original array: ");
+    for (size_t i = 0; i < arraySize; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    modifyArrayElements(arr, arraySize);
+    printf("Array after modifyArrayElements(): ");
+    for (size_t i = 0; i < arraySize; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
